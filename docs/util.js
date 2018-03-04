@@ -4,15 +4,6 @@ const CANVAS_HEIGHT = CANVAS_WIDTH;
 const MAP_HALF = CANVAS_WIDTH / 2;
 const TRAINING_SIZE = 1500;
 
-//aux methods
-function randomFromInterval(min,max){
-  if (min < 0) {
-    return min + Math.random() * (Math.abs(min)+max);
-  }else {
-    return min + Math.random() * max;
-  }
-}
-
 // ACTIVATION FUNCTION
 // sign function in mathematics:
 // evaluates if a number is postive or negative.
@@ -22,6 +13,15 @@ function sign(number){
     return 1;
   } else {
     return -1;
+  }
+}
+
+//aux methods
+function randomFromInterval(min,max){
+  if (min < 0) {
+    return min + Math.random() * (Math.abs(min)+max);
+  }else {
+    return min + Math.random() * max;
   }
 }
 

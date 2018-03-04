@@ -1,6 +1,5 @@
-///////////////////////
+
 // Drawing Functions //
-///////////////////////
 
 function draw_training_line() {
   stroke(255, 100, 100);
@@ -72,9 +71,7 @@ function draw() {
   frameRate(400);
   draw_cartesian_axis()
 
-  ////////////////
   //TRAINING CODE 
-  ////////////////
   trainingIndex = trainingIndex + 1;
   if (trainingIndex < TRAINING_SIZE) {
     
