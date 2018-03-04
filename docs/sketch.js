@@ -20,11 +20,11 @@ function draw_point(dataPoint) {
 }
 
 function drawText(textInput){
-  fill(255, 255,255, 150)
-  rect(5, CANVAS_HEIGHT -20 ,  70, CANVAS_HEIGHT -5)
+  fill(255, 255, 255)
+  rect(5, CANVAS_HEIGHT -20 ,  220, CANVAS_HEIGHT -5)
   fill(50);
   textSize(10)
-  text(textInput, 10, CANVAS_HEIGHT -6);
+  text(textInput, 12, CANVAS_HEIGHT -6);
 }
 
 function draw_cartesian_axis() {
@@ -99,11 +99,9 @@ function draw() {
     perceptron.train(input, target)
   
     error = (wrongPrediction / TRAINING_SIZE * 100).toFixed(2)
-
-    var textInput = "error :" + error.toString() + "%"
+    var remainingPredictions = TRAINING_SIZE - trainingIndex
+    var textInput = "error :" + error.toString() + "%" + "    remaining predictions : " + remainingPredictions
     drawText(textInput)
   
-    // console.log("right prediction :" + rightPrediction.toString())
-    // console.log("wrong prediction :" + wrongPrediction.toString())
-  }
-}
+  }//end of if
+}//end of draw
