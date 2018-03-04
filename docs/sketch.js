@@ -99,7 +99,7 @@ function draw() {
     perceptron.train(input, target)
   
     error = (wrongPrediction / TRAINING_SIZE * 100).toFixed(2)
-    var remainingPredictions = TRAINING_SIZE - trainingIndex
+    var remainingPredictions = TRAINING_SIZE - trainingIndex -1
     var textInput = "error :" + error.toString() + "%" + "    remaining predictions : " + remainingPredictions
     drawText(textInput)
   
