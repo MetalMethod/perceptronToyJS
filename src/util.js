@@ -1,8 +1,8 @@
 //constants
-const CANVAS_WIDTH = 350;
+const CANVAS_WIDTH = 550;
 const CANVAS_HEIGHT = CANVAS_WIDTH;
 const MAP_HALF = CANVAS_WIDTH / 2;
-
+const TRAINING_SIZE = 800;
 
 //aux methods
 function randomFromInterval(min,max){
@@ -23,4 +23,8 @@ function sign(number){
   } else {
     return -1;
   }
+}
+
+function randomPosition(){
+  return randomFromInterval(0, CANVAS_HEIGHT)
 }

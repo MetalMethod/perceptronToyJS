@@ -1,15 +1,17 @@
 
 //Create objects
 
-let perceptron = new Perceptron(2)
-
-
-let inputs = [-1, 0.5]
-let prediction = perceptron.predict(inputs)
+//Instanciates a Perceptron with (number of inputs, learning rate)
 
 
 
-let n = 14;
+// let inputs = [-1, 0.5]
+
+// let prediction = perceptron.predict(inputs)
+
+
+
+// let n = 14;
 
 
 
