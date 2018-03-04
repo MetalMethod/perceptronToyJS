@@ -1,0 +1,9 @@
+
+
+feed forward:
+
+1) SUM of (each input multiplied by its weight)
+
+2) ACTIVATION function, SIGN() converts results to +1 OR -1
+
+3) 
