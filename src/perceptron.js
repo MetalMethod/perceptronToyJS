@@ -20,7 +20,7 @@ class Perceptron{
         for (let i = 0; i < this.weights.length; i++){
             sum_of_weighted_inputs += inputs[i] * this.weights[i];
         }
-        return activate(sum_of_weighted_inputs);
+        return this.activate(sum_of_weighted_inputs);
     }
 
     // ACTIVATION FUNCTION: sign function from mathematics

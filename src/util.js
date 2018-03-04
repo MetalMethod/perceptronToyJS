@@ -1,6 +1,8 @@
 //constants
-const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 400;
+const CANVAS_WIDTH = 350;
+const CANVAS_HEIGHT = CANVAS_WIDTH;
+const MAP_HALF = CANVAS_WIDTH / 2;
+
 
 //aux methods
 function randomFromInterval(min,max){

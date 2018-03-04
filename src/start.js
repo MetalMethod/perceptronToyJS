@@ -9,19 +9,20 @@ let prediction = perceptron.predict(inputs)
 
 
 
-
-
-
-
 let n = 14;
 
-console.log("inputs: ")
-console.log(inputs)
 
 
 
-console.log("weights: ")
-console.log(perceptron.weights)
+// console.log("data point:")
+// console.log(data_training)
 
-console.log("output: ")
-console.log(prediction)
+// console.log("inputs: ")
+// console.log(inputs)
+
+// console.log("weights: ")
+// console.log(perceptron.weights)
+
+// console.log("output: ")
+// console.log(prediction)
+
