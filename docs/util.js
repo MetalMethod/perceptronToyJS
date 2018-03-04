@@ -2,7 +2,7 @@
 const CANVAS_WIDTH = 550;
 const CANVAS_HEIGHT = CANVAS_WIDTH;
 const MAP_HALF = CANVAS_WIDTH / 2;
-const TRAINING_SIZE = 1000;
+const TRAINING_SIZE = 1500;
 
 //aux methods
 function randomFromInterval(min,max){

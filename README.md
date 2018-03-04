@@ -1,9 +1,10 @@
 # perceptronToyJS
-A toy implementation in javascript of a single perceptron. Made for fun and to learn how a perceptron works.
-
-Inspired by filipesantoss: https://github.com/filipesantoss/toy-perceptron
+A toy implementation in javascript of a single perceptron. Made for fun and to learn how a perceptron works. To run it, just go to:
+https://metalmethod.github.io/perceptronToyJS/
 
 Heavly referenced on the awesome Nature of Code series by Daniel Shiffman (TheCodingTrain): https://www.youtube.com/watch?v=ntKn5TPHHAk&list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh&index=2
+
+Inspired by filipesantoss: https://github.com/filipesantoss/toy-perceptron
 
 # Description:
 In a Supervised Learning Classification problem, the perceptron tries to predict if a data point belongs to a class or another. 
@@ -32,7 +33,7 @@ updated_weight = current_weight + error * input * learning_rate
 ```
 
 # Perceptron algorithm:
-1) Provide to the perceptron inputs with known ansers with Feed forward.
+1) Provide to the perceptron inputs with known answers with Feed forward.
 2) Ask the perceptron to guess a answer.
 3) Compute the error.
 4) Update weights according to the error.
