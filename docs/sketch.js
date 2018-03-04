@@ -29,7 +29,7 @@ function drawText(textInput){
 
 function draw_cartesian_axis() {
   //DRAW AXIS
-  stroke(80);
+  stroke(200, 150, 0);
   //x axis
   line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
   //y axis
@@ -70,7 +70,7 @@ function setup() {
 
 function draw() {
   frameRate(400);
-  //draw_cartesian_axis()
+  draw_cartesian_axis()
 
   ////////////////
   //TRAINING CODE 

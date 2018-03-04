@@ -1,6 +1,6 @@
 # perceptronToyJS
-A toy implementation in javascript of a single perceptron. Made for fun and to learn how a perceptron works. To run it, just go to:
-https://metalmethod.github.io/perceptronToyJS/
+A toy implementation in javascript of a single perceptron. Made for fun and to learn how a perceptron works. 
+To run it, just go to: https://metalmethod.github.io/perceptronToyJS/
 
 Heavly referenced on the awesome Nature of Code series by Daniel Shiffman (TheCodingTrain): https://www.youtube.com/watch?v=ntKn5TPHHAk&list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh&index=2
 
@@ -37,10 +37,9 @@ updated_weight = current_weight + error * input * learning_rate
 2) Ask the perceptron to guess a answer.
 3) Compute the error.
 4) Update weights according to the error.
-5) Repeat from 1)
+5) Repeat.
 
 # Feed forward: processing the inputs
 1) SUM of (each input multiplied by its weight)
 2) ACTIVATION function, SIGN() converts results to +1 OR -1
 3) Calculate the error 
-
