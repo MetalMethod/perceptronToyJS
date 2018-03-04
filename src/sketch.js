@@ -1,8 +1,9 @@
 
 //p5 required functions
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   
+
   }
   
   
