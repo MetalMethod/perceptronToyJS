@@ -34,8 +34,8 @@ updated_weight = current_weight + error * input * learning_rate
 
 # Perceptron algorithm:
 1) Provide to the perceptron inputs with known answers with Feed forward:
-    A) SUM of (each input multiplied by its weight)
-    B) ACTIVATION function: the Sign function converts results to +1 OR -1.
+    - SUM of (each input multiplied by its weight)
+    - ACTIVATION function: the Sign function converts results to +1 OR -1.
 2) Ask the perceptron to guess a answer.
 3) Compute the error.
 4) Update weights according to the error.
