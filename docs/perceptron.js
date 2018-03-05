@@ -15,17 +15,6 @@ class Perceptron{
     }
 
     //inputs is a floats array
-    predictSinglePoint(point){
-        //calculte the sum of all weighted inputs
-        let sumOfWeightedInputs = 0;
-        
-        sumOfWeightedInputs += point.x * this.weights[0];
-        sumOfWeightedInputs += point.y * this.weights[1];
-        
-        return this.activate(sumOfWeightedInputs);
-    }
-
-    //inputs is a floats array
     predict(inputs){
         //calculte the sum of all weighted inputs
         let sumOfWeightedInputs = 0;

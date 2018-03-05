@@ -56,7 +56,7 @@ function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   background(200);
 
-  perceptron = new Perceptron(2, 0.1)
+  perceptron = new Perceptron(3, 0.1)
   trainingLine = new TrainingLine()
   data_array = create_training_data(trainingLine)
   trainingIndex = -1
@@ -77,7 +77,7 @@ function draw() {
     
     draw_training_line(trainingLine);
 
-    input = [data_array[trainingIndex].x, data_array[trainingIndex].y];
+    input = [data_array[trainingIndex].x, data_array[trainingIndex].y, data_array[trainingIndex].bias ];
     target = data_array[trainingIndex].label;
 
     prediction = perceptron.predict(input)

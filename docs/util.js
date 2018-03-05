@@ -3,6 +3,7 @@ const CANVAS_WIDTH = 550;
 const CANVAS_HEIGHT = CANVAS_WIDTH;
 const MAP_HALF = CANVAS_WIDTH / 2;
 const TRAINING_SIZE = 1500;
+const BIAS = 1
 
 // ACTIVATION FUNCTION
 // sign function in mathematics:

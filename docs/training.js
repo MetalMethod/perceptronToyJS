@@ -18,6 +18,7 @@ class DataPoint {
         //this.trainingLine = trainingLine;
         this.y = randomFromInterval(0, CANVAS_HEIGHT);
         this.x = randomFromInterval(0, CANVAS_WIDTH);
+        this.bias = BIAS;
         this.label = this.getLabel(this.x, this.y);
         // this.cartesian_x
         // this.cartesian_y
