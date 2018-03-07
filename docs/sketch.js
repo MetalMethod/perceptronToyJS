@@ -45,12 +45,10 @@ function drawUiBG() {
 }
 
 function drawUiFisrtInputBlock(){
-  stroke(100);
-  fill(230)
   let x = UI_COLUMN;
   let y = UI_TOP + (UI_GRID_SIZE*2)
-  // let center_x = x + (UI_GRID_SIZE/2);
-  // let center_y = (UI_TOP + (UI_GRID_SIZE*2)) - (UI_GRID_SIZE/2)
+  stroke(100);
+  fill(230);
   rect(x, y, UI_GRID_SIZE, UI_GRID_SIZE)
   return [x, y]
 }
@@ -90,7 +88,6 @@ function drawUiOutputColumn(){
 }
 
 function drawPerceptronLines(blocksCenters){
-  
   //draw input conections
   blocksCenters.forEach(block => {
     stroke(150, 150, 150);
@@ -98,10 +95,22 @@ function drawPerceptronLines(blocksCenters){
     let y = block[1] + (UI_GRID_SIZE / 2);
     line(x, y, MAP_HALF, UI_HALF_HEIGHT)
   });
-  
   //draw output connection
   line(MAP_HALF, UI_HALF_HEIGHT, (UI_COLUMN *3 ), UI_HALF_HEIGHT)
 }
+
+
+function drawPerceptronLabels(blocksCenters) {
+  fill(50);
+  textSize(10)
+  txt_x = UI_COLUMN - (UI_GRID_SIZE)+3
+  txt_y = blocksCenters[0][1] + (UI_GRID_SIZE/2)+3;
+  text("x", txt_x, txt_y);
+  text("y", txt_x, txt_y + (UI_GRID_SIZE *2));
+  text("bias", txt_x - 7, txt_y + (UI_GRID_SIZE *4));
+  text("prediction", (UI_COLUMN*3)-UI_GRID_SIZE, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) +10 );
+}
+
 
 function drawDisplay() {
   drawUiBG();
@@ -110,6 +119,7 @@ function drawDisplay() {
   drawUiInputColumn(); //call again to draw on top
   drawUiPerceptronCenter();
   drawUiOutputColumn();
+  drawPerceptronLabels(blocksCenters);
 }
 
 ////////////////////////////////
