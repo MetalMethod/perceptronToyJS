@@ -1,10 +1,10 @@
 class Perceptron{
 
-    constructor(inputsNumber, learningRate){
-        this.inputsNumber = inputsNumber;
+    constructor(){
+        this.inputsNumber = PERCEPTRON_INPUTS_BIAS;
         this.weights = Array(this.inputsNumber);
         this.initWeights();
-        this.learningRate = learningRate;
+        this.learningRate = PERCEPTRON_LEARNING_RATE;
     }
 
     //random intial weights

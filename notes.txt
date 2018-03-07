@@ -29,7 +29,6 @@ updated_weight = current_weight + error * input * learning_rate
 5) Repeat from 1)
 
 
-
 #Feed forward: processing the inputs
 
 1) SUM of (each input multiplied by its weight)
