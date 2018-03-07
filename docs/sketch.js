@@ -27,14 +27,13 @@ function draw_cartesian_axis() {
   line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
 }
 
-
 function drawText(textInput) {
   fill(50);
-  textSize(10)
+  textSize(10);
+  textAlign(LEFT)
   text("Perceptron", UI_COLUMN*2 - (UI_GRID_SIZE), UI_TOP + 5);
-  text(textInput, UI_COLUMN, UI_BOTTOM - UI_GRID_SIZE+10);
+  text(textInput, UI_COLUMN-(UI_GRID_SIZE*2), UI_BOTTOM - UI_GRID_SIZE+10);
 }
-
 
 
 //// UI DRAWING
@@ -99,10 +98,10 @@ function drawPerceptronLines(blocksCenters){
   line(MAP_HALF, UI_HALF_HEIGHT, (UI_COLUMN *3 ), UI_HALF_HEIGHT)
 }
 
-
 function drawPerceptronLabels(blocksCenters) {
   fill(50);
-  textSize(10)
+  textSize(10);
+  textAlign(LEFT);
   txt_x = UI_COLUMN - (UI_GRID_SIZE)+3
   txt_y = blocksCenters[0][1] + (UI_GRID_SIZE/2)+3;
   text("x", txt_x, txt_y);
@@ -111,6 +110,24 @@ function drawPerceptronLabels(blocksCenters) {
   text("prediction", (UI_COLUMN*3)-UI_GRID_SIZE, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) +10 );
 }
 
+function drawPredictionValue(prediction){
+  fill(50);
+  textSize(10);
+  textAlign(RIGHT);
+  text(prediction, (UI_COLUMN*3)+5, UI_HALF_HEIGHT + 35 );
+}
+
+function drawPredictionBoxValues(prediction, target){
+  if (prediction == target) {
+    fill(0, 180, 0);
+    rightPrediction = rightPrediction + 1;
+  } else {
+    wrongPrediction = wrongPrediction + 1
+    fill(180, 0, 0);
+  }
+  noStroke();
+  rect((UI_COLUMN*3)-(UI_GRID_SIZE)+1, UI_HALF_HEIGHT - UI_GRID_SIZE+1, UI_GRID_SIZE*2-1, UI_GRID_SIZE*2-1) 
+}
 
 function drawDisplay() {
   drawUiBG();
@@ -131,7 +148,6 @@ function setup() {
   createCanvas(CANVAS_WIDTH, WINDOW_HEIGHT);
   background(200);
 
-
   perceptron = new Perceptron()
   trainingLine = new TrainingLine()
   data_array = create_training_data(trainingLine)
@@ -141,12 +157,11 @@ function setup() {
   wrongPrediction = 0
 
   draw_point_array(data_array);
-
 }
 
 function draw() {
   frameRate(400);
-  draw_cartesian_axis()
+  //draw_cartesian_axis()
 
   //TRAINING CODE 
   trainingIndex = trainingIndex + 1;
@@ -158,8 +173,9 @@ function draw() {
     target = data_array[trainingIndex].label;
 
     prediction = perceptron.predict(input)
-
-    //draw predictions result
+    
+    
+    //paint predictions result points
     if (prediction == target) {
       fill(0, 180, 0);
       rightPrediction = rightPrediction + 1;
@@ -169,15 +185,17 @@ function draw() {
     }
     noStroke();
     ellipse(data_array[trainingIndex].x, data_array[trainingIndex].y, 6, 6)
-
+    
     perceptron.train(input, target)
-
+    
     error = (wrongPrediction / TRAINING_SIZE * 100).toFixed(2)
     var remainingPredictions = TRAINING_SIZE - trainingIndex - 1
-    var textInput = "error :" + error.toString() + "%" + "    remaining predictions : " + remainingPredictions
-
+    var textInput = "remaining predictions : " + remainingPredictions + "                              error :" + error.toString() + "%" 
+    
     //draw bottom UI on top of any other drawings
     drawDisplay();
     drawText(textInput)
+    drawPredictionValue(prediction);
+    drawPredictionBoxValues(prediction, target);
   }//end of if
 }//end of draw
