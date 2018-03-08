@@ -11,7 +11,6 @@ class Perceptron {
     initWeights() {
         for (let i = 0; i < this.weights.length; i++) {
             this.weights[i] = randomFromInterval(-1, 1);
-            console.log(this.weights[i])
         }
     }
 

@@ -200,7 +200,7 @@ function setup() {
 
 function draw() {
     frameRate(400);
-    //drawCartesianAxis()
+    drawCartesianAxis()
 
     //console.log(trainingIndex)
 

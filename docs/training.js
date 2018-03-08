@@ -22,7 +22,6 @@ function classificateDataPoint(DataPoint) {
     }
 }
 
-
 // A point of data in space  
 // [x, y] that are the inputs of the perceptron.
 class DataPoint {
@@ -30,10 +29,10 @@ class DataPoint {
         //this.trainingLine = trainingLine;
         this.y = randomFromInterval(0, CANVAS_HEIGHT);
         this.x = randomFromInterval(0, CANVAS_WIDTH);
+        this.cartesian_x;
+        this.cartesian_y;
         this.bias = BIAS;
         this.label = 0;
-        // this.cartesian_x
-        // this.cartesian_y
     }
 }
 
