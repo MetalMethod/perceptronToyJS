@@ -153,6 +153,7 @@ function setup() {
     
     dataPointsArray = createTrainingData(trainingLine);
     wrongPredictedDataPointsArray = [];
+    wrongPredictedDataPointsArray.push(new DataPoint())
 
     trainingIndex = -1;
 
@@ -166,14 +167,15 @@ function draw() {
     frameRate(400);
     //drawCartesianAxis()
 
-    //console.log(wrongPredictedDataPointsArray.length)
+    console.log(trainingIndex)
 
 
     //TRAINING CODE 
     trainingIndex = trainingIndex + 1;
 
+    
     //this if makes a cycle of one epoch (or running all the trainingset once.)
-    if (trainingIndex < TRAINING_SIZE) {
+    if (trainingIndex < dataPointsArray.length) {
 
         drawTrainingLine(trainingLine);
 
@@ -187,24 +189,26 @@ function draw() {
         //add wrong prediction point to a list
         if (prediction === target) {
             rightPredictionCount = rightPredictionCount + 1;
-            wrongPredictedDataPointsArray.forEach(element => {
-                if(element.x === input.x && element.y === input.y){
-                    element.pop()
-                }
-            });            
+        
             fill(0, 180, 0);
+            noStroke();
+            ellipse(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, 6, 6);
+            
+            //remove the point from the dataPointArray
+            dataPointsArray.splice(trainingIndex, 1);
+            
         } else {
-            wrongPredictionCount = wrongPredictionCount + 1;
-            wrongPredictedDataPointsArray.push(dataPointsArray[trainingIndex]);
+            //wrongPredictionCount = wrongPredictionCount + 1;
             fill(180, 0, 0);
+            noStroke();
+            ellipse(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, 6, 6);
         }
-        noStroke();
-        ellipse(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, 6, 6);
 
         perceptron.train(input, target);
 
-        error = (wrongPredictionCount / TRAINING_SIZE * 100).toFixed(2);
-        var remainingPredictions = TRAINING_SIZE - trainingIndex - 1;
+        //error = (wrongPredictionCount / TRAINING_SIZE * 100).toFixed(2);
+        var remainingPredictions = dataPointsArray.length;
+        error = (remainingPredictions / TRAINING_SIZE * 100).toFixed(2);
         var textInput = "remaining predictions : " + remainingPredictions + "                              error :" + error.toString() + "%"
 
         //draw bottom UI on top of any other drawings
@@ -212,8 +216,10 @@ function draw() {
         drawText(textInput)
         drawPredictionValue(prediction);
         drawPredictionBoxValues(prediction, target);
-    }//end of if of EPOCH  
     
-
+    }else{
+        trainingIndex = -1;
+    }
+    
 
 }//end of draw
