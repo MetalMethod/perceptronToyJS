@@ -100,9 +100,8 @@ function drawPerceptronLabels(blocksCenters) {
     text("x", txt_x, txt_y);
     text("y", txt_x, txt_y + (UI_GRID_SIZE * 2));
     text("bias", txt_x - 7, txt_y + (UI_GRID_SIZE * 4));
-    text("prediction", (UI_COLUMN * 3) - UI_GRID_SIZE, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) + 10);
-    text("activation", (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) );
-    
+    text("prediction", (UI_COLUMN * 3) - UI_GRID_SIZE -3, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) + 10);
+    text("activation ∑ W", (UI_COLUMN * 2) - UI_GRID_SIZE -10, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) -4);
 }
 
 function drawPredictionValue(prediction) {
