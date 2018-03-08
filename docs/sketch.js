@@ -13,8 +13,8 @@ function drawDataPointArray(dataPointsArray) {
 }
 
 function drawDataPoint(dataPoint) {
-    stroke(180)
-    fill(180)
+    stroke(170)
+    fill(170)
     ellipse(dataPoint.x, dataPoint.y, 6, 6)
 }
 
@@ -27,13 +27,6 @@ function drawCartesianAxis() {
     line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
 }
 
-function drawText(textInput) {
-    fill(50);
-    textSize(10);
-    textAlign(LEFT)
-    text("Perceptron", UI_COLUMN * 2 - (UI_GRID_SIZE), UI_TOP + 5);
-    text(textInput, UI_COLUMN - (UI_GRID_SIZE * 2), UI_BOTTOM - UI_GRID_SIZE + 10);
-}
 
 
 //// UI DRAWING
@@ -125,8 +118,26 @@ function drawPredictionBoxValues(prediction, target) {
         wrongPredictionCount = wrongPredictionCount + 1
         fill(180, 0, 0);
     }
+    if(dataPointsArray.length === 0) {
+        fill(190);
+    }
     noStroke();
     rect((UI_COLUMN * 3) - (UI_GRID_SIZE) + 1, UI_HALF_HEIGHT - UI_GRID_SIZE + 1, UI_GRID_SIZE * 2 - 1, UI_GRID_SIZE * 2 - 1)
+}
+
+function drawPredictionsText(textInput) {
+    fill(50);
+    textSize(10);
+    textAlign(LEFT)
+    text(textInput, UI_COLUMN - (UI_GRID_SIZE * 3), UI_BOTTOM - UI_GRID_SIZE + 10);
+    text("Perceptron", UI_COLUMN * 2 - (UI_GRID_SIZE), UI_TOP + 5);
+}
+
+function drawErrorsText(textInput) {
+    fill(50);
+    textSize(10);
+    textAlign(LEFT)
+    text(textInput, (UI_COLUMN*3) - (UI_GRID_SIZE * 3)+10, UI_BOTTOM - UI_GRID_SIZE + 10);
 }
 
 function drawUI() {
@@ -167,7 +178,7 @@ function draw() {
     frameRate(400);
     //drawCartesianAxis()
 
-    console.log(trainingIndex)
+    //console.log(trainingIndex)
 
 
     //TRAINING CODE 
@@ -184,7 +195,6 @@ function draw() {
 
         prediction = perceptron.predict(input);
 
-
         //paint predictions result points
         //add wrong prediction point to a list
         if (prediction === target) {
@@ -198,22 +208,25 @@ function draw() {
             dataPointsArray.splice(trainingIndex, 1);
             
         } else {
-            //wrongPredictionCount = wrongPredictionCount + 1;
+            wrongPredictionCount = wrongPredictionCount + 1;
             fill(180, 0, 0);
             noStroke();
             ellipse(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, 6, 6);
         }
-
+        // TRAINING
         perceptron.train(input, target);
 
-        //error = (wrongPredictionCount / TRAINING_SIZE * 100).toFixed(2);
+        //Info for UI
         var remainingPredictions = dataPointsArray.length;
-        error = (remainingPredictions / TRAINING_SIZE * 100).toFixed(2);
-        var textInput = "remaining predictions : " + remainingPredictions + "                              error :" + error.toString() + "%"
+        error = (wrongPredictionCount / rightPredictionCount * 100).toFixed(2);
+        
+        var predictionsTextInput = "remaining predictions : " + remainingPredictions;
+        var errorsTextInput = "error function: " + error + " %"; 
 
         //draw bottom UI on top of any other drawings
         drawUI();
-        drawText(textInput)
+        drawPredictionsText(predictionsTextInput);
+        drawErrorsText(errorsTextInput)
         drawPredictionValue(prediction);
         drawPredictionBoxValues(prediction, target);
     
