@@ -143,25 +143,26 @@ function drawErrorsText(textInput) {
 
 function drawXYvalues(x, y){
     fill(50);
-    textSize(9);
-    textAlign(LEFT);
+    textSize(14);
+    textAlign(RIGHT);
     txt_x = 103;
     txt_y = UI_HALF_HEIGHT;
 
-    text(x.toFixed(0), txt_x , txt_y - + (UI_GRID_SIZE * 2)+3);
-    text(y.toFixed(0), txt_x, txt_y +3 );
-    text(BIAS, txt_x +4, txt_y + (UI_GRID_SIZE * 2)+3);
+    text(x.toFixed(0), txt_x +13 , txt_y -  (UI_GRID_SIZE * 2)+6);
+    text(y.toFixed(0), txt_x +13, txt_y +6 );
+    text(BIAS, txt_x +10, txt_y + (UI_GRID_SIZE * 2)+6);
 }
 
 function drawWeights(){
+    
+    console.log(perceptron.weights[0].toFixed(0))
+    
     fill(50);
     textSize(10);
     textAlign(LEFT);
-    if(dataPointsArray.length > 0){
-        text("W x : " + perceptron.weights[0].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT -10 );
-        text("W y : " + perceptron.weights[1].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT +5 );
-        text("W b : " + perceptron.weights[2].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE-1, UI_HALF_HEIGHT +20 );
-    }
+    text("W x : " + perceptron.weights[0].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT -10 );
+    text("W y : " + perceptron.weights[1].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT +5 );
+    text("W b : " + perceptron.weights[2].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE-1, UI_HALF_HEIGHT +20 );
 }
 
 function drawUI() {
@@ -254,7 +255,7 @@ function draw() {
         drawPredictionBoxValues(prediction, target);
         drawWeights();
         if(dataPointsArray[trainingIndex]){
-            drawXYvalues(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y);
+            drawXYvalues(dataPointsArray[trainingIndex].cartesian_x, dataPointsArray[trainingIndex].cartesian_y);
         }
     
     }else{
