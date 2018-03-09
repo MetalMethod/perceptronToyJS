@@ -4,11 +4,11 @@
 function drawTrainingLine(trainingLine) {
     stroke(255, 100, 100);
     line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-    // push()
-    //     stroke(100, 100, 100);
-    //     strokeWeight(3)
-    //     line(trainingLine.begin_x, trainingLine.begin_y, trainingLine.end_x, trainingLine.end_y)
-    // pop()
+    push()
+        stroke(100, 100, 100);
+        strokeWeight(3)
+        line(trainingLine.begin_x, trainingLine.begin_y, trainingLine.end_x, trainingLine.end_y)
+    pop()
 }
 
 function drawDataPointArray(dataPointsArray) {
@@ -34,8 +34,6 @@ function drawCartesianAxis() {
         line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
     pop()
 }
-
-
 
 //// UI DRAWING
 function drawUiBG() {

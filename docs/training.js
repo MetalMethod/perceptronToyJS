@@ -1,4 +1,4 @@
-//this class generates the data_set for training
+//this module generates the data_set for training
 
 function createTrainingData(trainingLine) {
     dataPointsArray = Array(TRAINING_SIZE);
@@ -27,18 +27,15 @@ function classificateDataPoint(DataPoint) {
 // [x, y] that are the inputs of the perceptron.
 class DataPoint {
     constructor(trainingLine) {
-        this.x = randomFromInterval(0, CANVAS_WIDTH);
-        this.y = randomFromInterval(0, CANVAS_HEIGHT);
-        
+        this.bias = BIAS;
+        this.label = 0;
+        this.x = randomPosition();
+        this.y = randomPosition();
+        //convert canvas cordinates into values from -1 ro 1
         //p5.js map function
         //n_needed = map(n_now,   min_n_nox, max_n_now,  min_n_want, max_n_want)
         this.cartesian_x = map(this.x, 0, CANVAS_WIDTH, MIN_X, MAX_Y);
         this.cartesian_y = map(this.y, 0, CANVAS_HEIGHT, MIN_Y, MAX_Y);
-        
-        this.bias = BIAS;
-        this.label = 0;
-        
-        //console.log(this.cartesian_x.toString() + "   " + this.x.toString() )
     }
 }
 
@@ -47,9 +44,12 @@ class DataPoint {
 //and separates points in 2 classes.
 class TrainingLine {
     constructor() {
-        this.begin_x = randomPosition();
-        this.begin_y = randomPosition();
-        this.end_x = randomPosition();
-        this.end_y = randomPosition();
+        this.begin_x = map(MIN_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
+        this.begin_y = map(f(MIN_X), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
+        this.end_x = map(MAX_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
+        this.end_y = map(f(MAX_X), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
+        
+        console.log(this.begin_x.toString() + "    " + this.begin_y.toString())
+        console.log(this.end_x.toString() + "    " + this.end_y.toString())
     }
 }
