@@ -26,13 +26,18 @@ function classificateDataPoint(DataPoint) {
 // [x, y] that are the inputs of the perceptron.
 class DataPoint {
     constructor(trainingLine) {
-        //this.trainingLine = trainingLine;
-        this.y = randomFromInterval(0, CANVAS_HEIGHT);
         this.x = randomFromInterval(0, CANVAS_WIDTH);
-        this.cartesian_x;
-        this.cartesian_y;
+        this.y = randomFromInterval(0, CANVAS_HEIGHT);
+        
+        //p5.js map function
+        //n_needed = map(n_now,   min_n_nox, max_n_now,  min_n_want, max_n_want)
+        this.cartesian_x = map(this.x, 0, CANVAS_WIDTH, MIN_X, MAX_Y);
+        this.cartesian_y = map(this.y, 0, CANVAS_HEIGHT, MIN_Y, MAX_Y);
+        
         this.bias = BIAS;
         this.label = 0;
+        
+        //console.log(this.cartesian_x.toString() + "   " + this.x.toString() )
     }
 }
 

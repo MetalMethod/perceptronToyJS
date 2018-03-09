@@ -5,6 +5,15 @@ const CANVAS_HEIGHT = CANVAS_WIDTH;
 const MAP_HALF = CANVAS_WIDTH / 2;
 const WINDOW_HEIGHT = CANVAS_HEIGHT + UI_HEIGHT;
 
+//cartesian cordenates
+const MIN_X = -1;
+const MAX_X = 1;
+const MIN_Y = -1;
+const MAX_Y = 1;
+
+
+
+
 const TRAINING_SIZE = 1500;
 const BIAS = 1
 
