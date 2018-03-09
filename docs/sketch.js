@@ -212,7 +212,7 @@ function draw() {
     //this if makes a cycle of one epoch (or running all the trainingset once.)
     if (trainingIndex < dataPointsArray.length) {
 
-        drawTrainingLine(trainingLine);
+        //drawTrainingLine(trainingLine);
 
         input = [dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, dataPointsArray[trainingIndex].bias];
         target = dataPointsArray[trainingIndex].label;
