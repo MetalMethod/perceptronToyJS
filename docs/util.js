@@ -61,7 +61,5 @@ function randomFromInterval(min, max) {
 // Describe a line with a math funtion
 // f(X) = (a * X) + b
 function f(input, a, b){
-    a = randomFromInterval(-0.8, 0.8)
-    b = randomFromInterval(-0.4, 0.4)
     return a * input + b;
 }

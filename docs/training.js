@@ -3,10 +3,12 @@
 function createTrainingData(trainingLine) {
     dataPointsArray = Array(TRAINING_SIZE);
 
+
+
     for (i = 0; i < dataPointsArray.length; i++) {
         dataPointsArray[i] = new DataPoint(trainingLine);
-        dataPointsArray[i].label = classificateDataPoint(dataPointsArray[i]);
-        
+        dataPointsArray[i].label = classificateDataPoint(dataPointsArray[i], trainingLine);
+
     }
     return dataPointsArray;
 }
@@ -15,12 +17,25 @@ function createDataPoint(trainingLine) {
     return new DataPoint(trainingLine);
 }
 
-function classificateDataPoint(DataPoint) {
-    if (DataPoint.cartesian_x > DataPoint.cartesian_y) {
-        return 1;
-    } else {
-        return -1;
-    }
+function classificateDataPoint(DataPoint, trainingLine) {
+    // if (DataPoint.cartesian_x > DataPoint.cartesian_y) {
+    //     return 1;
+    // } else {
+    //     return -1;
+    // }
+
+    // if (DataPoint.cartesian_y < f(DataPoint.cartesian_x, trainingLine.a, trainingLine.b)) {
+    //     return -1;
+    // } else {
+    //     return 1
+    // }
+    label = 1
+    if (DataPoint.cartesian_y < f(DataPoint.cartesian_x, trainingLine.a, trainingLine.b)) {
+        label = -1;
+    } 
+    console.log(label)
+    return label
+
 }
 
 // A point of data in space  
@@ -43,12 +58,14 @@ class DataPoint {
 //A line that crosses the space 
 //and separates points in 2 classes.
 class TrainingLine {
-    constructor() {
+    constructor(a, b) {
         this.begin_x = map(MIN_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
-        this.begin_y = map(f(MIN_X), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
+        this.begin_y = map(f(MIN_X, a, b), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
         this.end_x = map(MAX_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
-        this.end_y = map(f(MAX_X), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
-        
+        this.end_y = map(f(MAX_X, a, b), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
+        this.a = a;
+        this.b = b;
+
         console.log(this.begin_x.toString() + "    " + this.begin_y.toString())
         console.log(this.end_x.toString() + "    " + this.end_y.toString())
     }

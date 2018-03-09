@@ -187,8 +187,12 @@ function setup() {
     createCanvas(CANVAS_WIDTH, WINDOW_HEIGHT);
     background(200);
 
+    //store f(x) values
+    var a = randomFromInterval(-0.8, 0.8)
+    var b = randomFromInterval(-0.4, 0.4)
+
     perceptron = new Perceptron();
-    trainingLine = new TrainingLine();
+    trainingLine = new TrainingLine(a,b);
     
     dataPointsArray = createTrainingData(trainingLine);
     wrongPredictedDataPointsArray = [];
