@@ -31,6 +31,7 @@ const PERCEPTRON_INPUTS_BIAS = PERCEPTRON_INPUTS + 1;
 const PERCEPTRON_LEARNING_RATE = 0.1;
 
 
+
 // ACTIVATION FUNCTION
 // sign function in mathematics:
 // evaluates if a number is postive or negative.
@@ -54,5 +55,11 @@ function randomFromInterval(min, max) {
         return min + Math.random() * (Math.abs(min) + max);
     } else {
         return min + Math.random() * max;
-    }
+    }    
+}
+
+// Describe a line with a math funtion
+// f(X) = (a * X) + b
+function f(input, a, b){
+    return a * input + b;
 }

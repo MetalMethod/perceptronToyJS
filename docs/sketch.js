@@ -1,9 +1,14 @@
 
 //TRAINING DATA Drawing Functions //
 
-function drawTrainingLine() {
+function drawTrainingLine(trainingLine) {
     stroke(255, 100, 100);
     line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    // push()
+    //     stroke(100, 100, 100);
+    //     strokeWeight(3)
+    //     line(trainingLine.begin_x, trainingLine.begin_y, trainingLine.end_x, trainingLine.end_y)
+    // pop()
 }
 
 function drawDataPointArray(dataPointsArray) {
@@ -19,12 +24,15 @@ function drawDataPoint(dataPoint) {
 }
 
 function drawCartesianAxis() {
-    //DRAW AXIS
-    stroke(200, 150, 0);
-    //x axis
-    line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
-    //y axis
-    line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
+    push()
+        //DRAW AXIS
+        strokeWeight(1)
+        stroke(200, 150, 0);
+        //x axis
+        line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
+        //y axis
+        line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
+    pop()
 }
 
 
@@ -153,10 +161,7 @@ function drawXYvalues(x, y){
     text(BIAS, txt_x +10, txt_y + (UI_GRID_SIZE * 2)+6);
 }
 
-function drawWeights(){
-    
-    console.log(perceptron.weights[0].toFixed(0))
-    
+function drawWeights(){    
     fill(50);
     textSize(10);
     textAlign(LEFT);
@@ -202,9 +207,6 @@ function setup() {
 function draw() {
     frameRate(400);
     drawCartesianAxis()
-
-    //console.log(trainingIndex)
-
 
     //TRAINING CODE 
     trainingIndex = trainingIndex + 1;
