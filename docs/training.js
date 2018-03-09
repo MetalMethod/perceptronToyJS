@@ -3,9 +3,12 @@
 function createTrainingData(trainingLine) {
     dataPointsArray = Array(TRAINING_SIZE);
 
+    debugger
+
     for (i = 0; i < dataPointsArray.length; i++) {
         dataPointsArray[i] = new DataPoint(trainingLine);
         dataPointsArray[i].label = classificateDataPoint(dataPointsArray[i]);
+        
     }
     return dataPointsArray;
 }
@@ -15,7 +18,7 @@ function createDataPoint(trainingLine) {
 }
 
 function classificateDataPoint(DataPoint) {
-    if (DataPoint.x > DataPoint.y) {
+    if (DataPoint.cartesian_x > DataPoint.cartesian_y) {
         return 1;
     } else {
         return -1;
