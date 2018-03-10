@@ -226,7 +226,7 @@ function drawClassificationShape(trainingLine) {
 function setup() {
     
 
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth - 5, windowHeight -5);
     background(210);
 
     //store f(x) values
