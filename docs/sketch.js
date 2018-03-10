@@ -2,14 +2,40 @@
 //TRAINING DATA Drawing Functions //
 
 function drawTrainingLine(trainingLine) {
-    stroke(255, 100, 100);
-    line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     push()
-        stroke(100, 100, 100);
-        strokeWeight(3)
-        line(trainingLine.begin_x, trainingLine.begin_y, trainingLine.end_x, trainingLine.end_y)
+    stroke(100, 100, 100);
+    strokeWeight(5)
+    line(trainingLine.begin_x, trainingLine.begin_y, trainingLine.end_x, trainingLine.end_y)
     pop()
 }
+
+function drawPredictionLine(trainingLine) {
+    push()
+    stroke(100, 100, 255);
+    strokeWeight(0.1)
+    var weights = perceptron.weights;
+    var x1 = MIN_X;
+    var y1 = (-weights[2] - weights[0] * x1) / weights[1];
+    var x2 = MAX_X;
+    var y2 = (-weights[2] - weights[0] * x2) / weights[1];
+
+    var x1 = map(x1, MIN_X, MAX_X, 0, width);
+    var y1 = map(y1, MIN_Y, MAX_Y, height, 0);
+    var x2 = map(x2, MIN_X, MAX_X, 0, width);
+    var y2 = map(y2, MIN_Y, MAX_Y, height, 0);
+    line(x1, y1, x2, y2);
+
+    // if (dataPointsArray.length < 2) {
+    //     strokeWeight(9)
+    //     stroke(255, 255, 100);
+    //     line(x1, y1, x2, y2);
+    // }
+    pop()
+
+    //line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+}
+
+
 
 function drawDataPointArray(dataPointsArray) {
     dataPointsArray.forEach(element => {
@@ -25,13 +51,13 @@ function drawDataPoint(dataPoint) {
 
 function drawCartesianAxis() {
     push()
-        //DRAW AXIS
-        strokeWeight(1)
-        stroke(200, 150, 0);
-        //x axis
-        line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
-        //y axis
-        line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
+    //DRAW AXIS
+    strokeWeight(1)
+    stroke(200, 150, 0);
+    //x axis
+    line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
+    //y axis
+    line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
     pop()
 }
 
@@ -76,7 +102,7 @@ function drawUiInputColumn() {
 function drawUiPerceptronCenter() {
     stroke(100);
     fill(230)
-    ellipse(MAP_HALF, UI_HALF_HEIGHT, UI_GRID_SIZE * 3 +10 , UI_GRID_SIZE * 3+10)
+    ellipse(MAP_HALF, UI_HALF_HEIGHT, UI_GRID_SIZE * 3 + 10, UI_GRID_SIZE * 3 + 10)
 }
 
 function drawUiOutputColumn() {
@@ -88,7 +114,7 @@ function drawUiOutputColumn() {
 function drawPerceptronLines(blocksCenters) {
     //draw input conections
     blocksCenters.forEach(block => {
-        stroke(150, 150, 150);
+        stroke(100, 100, 100);
         let x = block[0] + (UI_GRID_SIZE / 2);
         let y = block[1] + (UI_GRID_SIZE / 2);
         line(x, y, MAP_HALF, UI_HALF_HEIGHT)
@@ -106,8 +132,8 @@ function drawPerceptronLabels(blocksCenters) {
     text("x", txt_x, txt_y);
     text("y", txt_x, txt_y + (UI_GRID_SIZE * 2));
     text("bias", txt_x - 7, txt_y + (UI_GRID_SIZE * 4));
-    text("prediction", (UI_COLUMN * 3) - UI_GRID_SIZE -3, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) + 10);
-    text("activation ∑ W", (UI_COLUMN * 2) - UI_GRID_SIZE -10, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) -4);
+    text("prediction", (UI_COLUMN * 3) - UI_GRID_SIZE - 3, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) + 10);
+    text("activation ∑ W", (UI_COLUMN * 2) - UI_GRID_SIZE - 10, UI_HALF_HEIGHT - (UI_GRID_SIZE * 2) - 4);
 }
 
 function drawPredictionValue(prediction) {
@@ -125,7 +151,7 @@ function drawPredictionBoxValues(prediction, target) {
         wrongPredictionCount = wrongPredictionCount + 1
         fill(180, 0, 0);
     }
-    if(dataPointsArray.length === 0) {
+    if (dataPointsArray.length === 0) {
         fill(190);
     }
     noStroke();
@@ -144,28 +170,28 @@ function drawErrorsText(textInput) {
     fill(50);
     textSize(10);
     textAlign(LEFT)
-    text(textInput, (UI_COLUMN*3) - (UI_GRID_SIZE * 3)+10, UI_BOTTOM - UI_GRID_SIZE + 10);
+    text(textInput, (UI_COLUMN * 3) - 10 - (UI_GRID_SIZE * 3) + 10, UI_BOTTOM - UI_GRID_SIZE + 10);
 }
 
-function drawXYvalues(x, y){
+function drawXYvalues(x, y) {
     fill(50);
     textSize(14);
     textAlign(RIGHT);
     txt_x = 103;
     txt_y = UI_HALF_HEIGHT;
 
-    text(x.toFixed(0), txt_x +13 , txt_y -  (UI_GRID_SIZE * 2)+6);
-    text(y.toFixed(0), txt_x +13, txt_y +6 );
-    text(BIAS, txt_x +10, txt_y + (UI_GRID_SIZE * 2)+6);
+    text(x.toFixed(0), txt_x + 13, txt_y - (UI_GRID_SIZE * 2) + 6);
+    text(y.toFixed(0), txt_x + 13, txt_y + 6);
+    text(BIAS, txt_x + 10, txt_y + (UI_GRID_SIZE * 2) + 6);
 }
 
-function drawWeights(){    
+function drawWeights() {
     fill(50);
     textSize(10);
     textAlign(LEFT);
-    text("W x : " + perceptron.weights[0].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT -10 );
-    text("W y : " + perceptron.weights[1].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT +5 );
-    text("W b : " + perceptron.weights[2].toFixed(0) , (UI_COLUMN * 2) - UI_GRID_SIZE-1, UI_HALF_HEIGHT +20 );
+    text("W x : " + perceptron.weights[0].toFixed(0), (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT - 10);
+    text("W y : " + perceptron.weights[1].toFixed(0), (UI_COLUMN * 2) - UI_GRID_SIZE, UI_HALF_HEIGHT + 5);
+    text("W b : " + perceptron.weights[2].toFixed(0), (UI_COLUMN * 2) - UI_GRID_SIZE - 1, UI_HALF_HEIGHT + 20);
 }
 
 function drawUI() {
@@ -178,6 +204,17 @@ function drawUI() {
     drawPerceptronLabels(blocksCenters);
 }
 
+
+function drawClassificationShape(trainingLine) {
+    fill(230)
+    beginShape()
+    vertex(trainingLine.begin_x, trainingLine.begin_y)
+    vertex(0, CANVAS_HEIGHT)
+    vertex(CANVAS_WIDTH, CANVAS_HEIGHT)
+    vertex(trainingLine.end_x, trainingLine.end_y)
+    endShape()
+}
+
 ////////////////////////////////
 // p5.js required functions:
 // setup() runs only once
@@ -185,15 +222,15 @@ function drawUI() {
 ////////////////////////////////
 function setup() {
     createCanvas(CANVAS_WIDTH, WINDOW_HEIGHT);
-    background(200);
+    background(210);
 
     //store f(x) values
     var a = randomFromInterval(-0.8, 0.8)
     var b = randomFromInterval(-0.4, 0.4)
 
     perceptron = new Perceptron();
-    trainingLine = new TrainingLine(a,b);
-    
+    trainingLine = new TrainingLine(a, b);
+
     dataPointsArray = createTrainingData(trainingLine);
     wrongPredictedDataPointsArray = [];
     wrongPredictedDataPointsArray.push(new DataPoint())
@@ -203,15 +240,17 @@ function setup() {
     rightPredictionCount = 0;
     wrongPredictionCount = 0;
 
+    drawClassificationShape(trainingLine);
     drawDataPointArray(dataPointsArray);
 }
 
 function draw() {
     frameRate(400);
-    drawCartesianAxis()
+    //drawCartesianAxis()
 
     //TRAINING CODE 
     trainingIndex = trainingIndex + 1;
+    drawPredictionLine(trainingLine);
 
     //this if makes a cycle of one epoch (or running all the trainingset once.)
     if (trainingIndex < dataPointsArray.length) {
@@ -227,14 +266,14 @@ function draw() {
         //add wrong prediction point to a list
         if (prediction === target) {
             rightPredictionCount = rightPredictionCount + 1;
-        
-            fill(0, 180, 0);
+
+            fill(30, 220, 30);
             noStroke();
             ellipse(dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, 6, 6);
-            
+
             //remove the point from the dataPointArray
             dataPointsArray.splice(trainingIndex, 1);
-            
+
         } else {
             wrongPredictionCount = wrongPredictionCount + 1;
             fill(180, 0, 0);
@@ -247,9 +286,9 @@ function draw() {
         //Info for UI
         var remainingPredictions = dataPointsArray.length;
         error = (wrongPredictionCount / rightPredictionCount * 100).toFixed(2);
-        
+
         var predictionsTextInput = "remaining predictions : " + remainingPredictions;
-        var errorsTextInput = "error function: " + error + " %"; 
+        var errorsTextInput = "errors in predictions: " + error + " %";
 
         //draw bottom UI on top of any other drawings
         drawUI();
@@ -258,13 +297,13 @@ function draw() {
         //drawPredictionValue(prediction);
         drawPredictionBoxValues(prediction, target);
         drawWeights();
-        if(dataPointsArray[trainingIndex]){
+        if (dataPointsArray[trainingIndex]) {
             drawXYvalues(dataPointsArray[trainingIndex].cartesian_x, dataPointsArray[trainingIndex].cartesian_y);
         }
-    
-    }else{
+
+    } else {
         trainingIndex = -1;
     }
-    
+
 
 }//end of draw

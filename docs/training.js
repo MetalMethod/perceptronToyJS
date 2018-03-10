@@ -33,7 +33,7 @@ function classificateDataPoint(DataPoint, trainingLine) {
     if (DataPoint.cartesian_y < f(DataPoint.cartesian_x, trainingLine.a, trainingLine.b)) {
         label = -1;
     } 
-    console.log(label)
+   //console.log(label)
     return label
 
 }
@@ -66,7 +66,7 @@ class TrainingLine {
         this.a = a;
         this.b = b;
 
-        console.log(this.begin_x.toString() + "    " + this.begin_y.toString())
-        console.log(this.end_x.toString() + "    " + this.end_y.toString())
+        //console.log(this.begin_x.toString() + "    " + this.begin_y.toString())
+        //console.log(this.end_x.toString() + "    " + this.end_y.toString())
     }
 }
