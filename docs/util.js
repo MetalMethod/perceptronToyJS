@@ -47,7 +47,7 @@ function sign(number) {
 //aux methods
 
 function randomPosition() {
-    return randomFromInterval(0, CANVAS_HEIGHT);
+    return randomFromInterval(0, windowWidth);
 }
 
 function randomFromInterval(min, max) {

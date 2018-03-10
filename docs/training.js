@@ -45,12 +45,14 @@ class DataPoint {
         this.bias = BIAS;
         this.label = 0;
         this.x = randomPosition();
-        this.y = randomPosition();
+        this.y = randomFromInterval(0, windowHeight);
+        //this.y = randomPosition();
+        
         //convert canvas cordinates into values from -1 ro 1
         //p5.js map function
         //n_needed = map(n_now,   min_n_nox, max_n_now,  min_n_want, max_n_want)
-        this.cartesian_x = map(this.x, 0, CANVAS_WIDTH, MIN_X, MAX_Y);
-        this.cartesian_y = map(this.y, 0, CANVAS_HEIGHT, MIN_Y, MAX_Y);
+        this.cartesian_x = map(this.x, 0, windowWidth, MIN_X, MAX_Y);
+        this.cartesian_y = map(this.y, 0, windowWidth, MIN_Y, MAX_Y);
     }
 }
 
@@ -59,10 +61,10 @@ class DataPoint {
 //and separates points in 2 classes.
 class TrainingLine {
     constructor(a, b) {
-        this.begin_x = map(MIN_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
-        this.begin_y = map(f(MIN_X, a, b), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
-        this.end_x = map(MAX_X, MIN_X, MAX_X, 0, CANVAS_WIDTH);
-        this.end_y = map(f(MAX_X, a, b), MIN_Y, MAX_Y, CANVAS_HEIGHT, 0);
+        this.begin_x = map(MIN_X, MIN_X, MAX_X, 0, windowWidth);
+        this.begin_y = map(f(MIN_X, a, b), MIN_Y, MAX_Y, windowHeight, 0);
+        this.end_x = map(MAX_X, MIN_X, MAX_X, 0, windowWidth);
+        this.end_y = map(f(MAX_X, a, b), MIN_Y, MAX_Y, windowHeight, 0);
         this.a = a;
         this.b = b;
 

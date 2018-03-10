@@ -9,30 +9,33 @@ function drawTrainingLine(trainingLine) {
     pop()
 }
 
-function drawPredictionLine(trainingLine) {
-    push()
-    stroke(100, 100, 255);
-    strokeWeight(0.1)
-    var weights = perceptron.weights;
+function drawPredictionLine() {
+    var weights = []
+    weights = perceptron.weights;
+    
     var x1 = MIN_X;
     var y1 = (-weights[2] - weights[0] * x1) / weights[1];
     var x2 = MAX_X;
     var y2 = (-weights[2] - weights[0] * x2) / weights[1];
-
-    var x1 = map(x1, MIN_X, MAX_X, 0, width);
-    var y1 = map(y1, MIN_Y, MAX_Y, height, 0);
-    var x2 = map(x2, MIN_X, MAX_X, 0, width);
-    var y2 = map(y2, MIN_Y, MAX_Y, height, 0);
-    line(x1, y1, x2, y2);
-
+    
+    var x1_map = map(x1, MIN_X, MAX_X, 0, width);
+    var y1_map = map(y1, MIN_Y, MAX_Y, height, 0);
+    var x2_map = map(x2, MIN_X, MAX_X, 0, width);
+    var y2_map = map(y2, MIN_Y, MAX_Y, height, 0);
+    
     // if (dataPointsArray.length < 2) {
-    //     strokeWeight(9)
-    //     stroke(255, 255, 100);
-    //     line(x1, y1, x2, y2);
-    // }
+        //     strokeWeight(9)
+        //     stroke(255, 255, 100);
+        // }
+        
+        push()
+        stroke(100, 100, 255);
+        strokeWeight(0.1)
+        line(x1_map, y1_map, x2_map, y2_map);
+        //     line(x1, y1, x2, y2);
+        //line(0, 0, windowWidth, windowHeight)
     pop()
 
-    //line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 }
 
 
@@ -55,9 +58,9 @@ function drawCartesianAxis() {
     strokeWeight(1)
     stroke(200, 150, 0);
     //x axis
-    line(0, MAP_HALF, CANVAS_WIDTH, MAP_HALF)
+    line(0, MAP_HALF, windowWidth, MAP_HALF)
     //y axis
-    line(MAP_HALF, CANVAS_WIDTH, MAP_HALF, 0)
+    line(MAP_HALF, windowWidth, MAP_HALF, 0)
     pop()
 }
 
@@ -65,7 +68,7 @@ function drawCartesianAxis() {
 function drawUiBG() {
     stroke(190);
     fill(230)
-    rect(0, CANVAS_HEIGHT - 4, CANVAS_WIDTH - 1, WINDOW_HEIGHT)
+    rect(0, 380 - 4, 400, WINDOW_HEIGHT)
 }
 
 function drawUiFisrtInputBlock() {
@@ -209,8 +212,8 @@ function drawClassificationShape(trainingLine) {
     fill(230)
     beginShape()
     vertex(trainingLine.begin_x, trainingLine.begin_y)
-    vertex(0, CANVAS_HEIGHT)
-    vertex(CANVAS_WIDTH, CANVAS_HEIGHT)
+    vertex(0, windowHeight)
+    vertex(windowWidth, windowHeight)
     vertex(trainingLine.end_x, trainingLine.end_y)
     endShape()
 }
@@ -221,27 +224,30 @@ function drawClassificationShape(trainingLine) {
 // draw() is a while true loop
 ////////////////////////////////
 function setup() {
-    createCanvas(CANVAS_WIDTH, WINDOW_HEIGHT);
+    
+
+    createCanvas(windowWidth, windowHeight);
     background(210);
 
     //store f(x) values
-    var a = randomFromInterval(-0.8, 0.8)
-    var b = randomFromInterval(-0.4, 0.4)
+    var a = randomFromInterval(-1,1)
+    var b = randomFromInterval(-1, 1)
 
     perceptron = new Perceptron();
     trainingLine = new TrainingLine(a, b);
-
+    
     dataPointsArray = createTrainingData(trainingLine);
     wrongPredictedDataPointsArray = [];
     wrongPredictedDataPointsArray.push(new DataPoint())
-
+    
     trainingIndex = -1;
-
+    
     rightPredictionCount = 0;
     wrongPredictionCount = 0;
-
+    
     drawClassificationShape(trainingLine);
     drawDataPointArray(dataPointsArray);
+    drawTrainingLine(trainingLine);
 }
 
 function draw() {
@@ -250,17 +256,16 @@ function draw() {
 
     //TRAINING CODE 
     trainingIndex = trainingIndex + 1;
-    drawPredictionLine(trainingLine);
-
+    
     //this if makes a cycle of one epoch (or running all the trainingset once.)
     if (trainingIndex < dataPointsArray.length) {
-
-        drawTrainingLine(trainingLine);
-
+        
+        
         input = [dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, dataPointsArray[trainingIndex].bias];
         target = dataPointsArray[trainingIndex].label;
-
+        
         prediction = perceptron.predict(input);
+        drawPredictionLine();
 
         //paint predictions result points
         //add wrong prediction point to a list
