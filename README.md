@@ -1,3 +1,5 @@
+![alt text](sample.png)
+
 # perceptronToyJS
 A toy implementation in javascript of a single perceptron. Made for fun and to learn how a perceptron works. 
 To run it, just go to: https://metalmethod.github.io/perceptronToyJS/
