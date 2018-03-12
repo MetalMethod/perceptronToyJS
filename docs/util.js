@@ -20,7 +20,7 @@ const BIAS = 1
 //UI SIZES
 const UI_GRID_SIZE = 20;
 const UI_PADDING = 10;
-const UI_TOP = CANVAS_HEIGHT + UI_PADDING;
+const UI_TOP = UI_PADDING * 3;
 const UI_HALF_HEIGHT = Math.floor(UI_HEIGHT / 2) + UI_TOP - UI_PADDING;
 const UI_BOTTOM = WINDOW_HEIGHT;
 const UI_COLUMN = UI_GRID_SIZE * 5;

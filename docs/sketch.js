@@ -68,7 +68,7 @@ function drawCartesianAxis() {
 function drawUiBG() {
     stroke(190);
     fill(230)
-    rect(0, 380 - 4, 400, WINDOW_HEIGHT)
+    rect(0, 0, 400, 210)
 }
 
 function drawUiFisrtInputBlock() {
@@ -165,7 +165,7 @@ function drawPredictionsText(textInput) {
     fill(50);
     textSize(10);
     textAlign(LEFT)
-    text(textInput, UI_COLUMN - (UI_GRID_SIZE * 3), UI_BOTTOM - UI_GRID_SIZE + 10);
+    text(textInput, UI_COLUMN - (UI_GRID_SIZE * 3), 200);
     text("Perceptron", UI_COLUMN * 2 - (UI_GRID_SIZE), UI_TOP + 5);
 }
 
@@ -173,7 +173,7 @@ function drawErrorsText(textInput) {
     fill(50);
     textSize(10);
     textAlign(LEFT)
-    text(textInput, (UI_COLUMN * 3) - 10 - (UI_GRID_SIZE * 3) + 10, UI_BOTTOM - UI_GRID_SIZE + 10);
+    text(textInput, (UI_COLUMN * 3) - 10 - (UI_GRID_SIZE * 3) + 10, 200);
 }
 
 function drawXYvalues(x, y) {
@@ -247,7 +247,7 @@ function setup() {
     
     drawClassificationShape(trainingLine);
     drawDataPointArray(dataPointsArray);
-    drawTrainingLine(trainingLine);
+   // drawTrainingLine(trainingLine);
 }
 
 function draw() {
@@ -260,7 +260,7 @@ function draw() {
     //this if makes a cycle of one epoch (or running all the trainingset once.)
     if (trainingIndex < dataPointsArray.length) {
 
-        drawTrainingLine(trainingLine);
+        //drawTrainingLine(trainingLine);
         
         input = [dataPointsArray[trainingIndex].x, dataPointsArray[trainingIndex].y, dataPointsArray[trainingIndex].bias];
         target = dataPointsArray[trainingIndex].label;
